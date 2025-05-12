@@ -197,10 +197,6 @@ func main() {
 	prometheus.MustRegister(version.NewCollector("pbm_exporter"))
 
 	http.Handle("/metrics", promhttp.Handler())
-	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("OK"))
-	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`<html><head><title>PBM Exporter</title></head><body><h1>PBM Exporter</h1><p><a href='/metrics'>Metrics</a></p></body></html>`))
 	})
